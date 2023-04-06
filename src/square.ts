@@ -1,5 +1,16 @@
 export const BOARD_WIDTH = 8
 
+export const initializeBoard = (): Square[][] => {
+  let board: Square[][] = []
+  for (let i = 0; i < BOARD_WIDTH; i++) {
+    board.push([])
+    for (let j = 0; j < BOARD_WIDTH; j++) {
+      board[i].push(new Square(i * BOARD_WIDTH + j))
+    }
+  }
+  return board
+}
+
 export class Square {
   index: number
   x: number

@@ -9,16 +9,17 @@
 </template>
 
 <script lang="ts">
-import { useBoardStore } from '@/stores'
 import { defineComponent } from 'vue'
 import Square from './Square.vue'
 import type { Square as Piece } from '@/square'
 
 export default defineComponent({
   name: 'Board',
-  setup() {
-    const { board, addSquare } = useBoardStore()
-    return { board, addSquare }
+  props: {
+    board: {
+      type: Array<Array<Piece>>,
+      required: true
+    }
   },
   components: {
     Square
@@ -26,7 +27,7 @@ export default defineComponent({
   emits: ['addToPath'],
   methods: {
     addToPath(square: Piece) {
-      this.addSquare(square)
+      this.$emit('addToPath', square)
     }
   }
 })
