@@ -15,12 +15,25 @@ const initializeBoard = (): Square[][] => {
 export const useBoardStore = defineStore('board', {
   state: () => ({
     path: [] as Square[],
-    board: initializeBoard()
+    board: initializeBoard(),
+    offset: 0
   }),
   actions: {
     addSquare(square: Square) {
-      square.click();
-      this.path.push(square);
+      square.click()
+      this.path.push(square)
+    },
+    increaseOffset(viewable: number): number {
+      if (this.offset < this.path.length - viewable) {
+        this.offset++
+      }
+      return this.offset
+    },
+    decreaseOffset(): number {
+      if (this.offset > 0) {
+        this.offset--
+      }
+      return this.offset;
     }
   }
 })
