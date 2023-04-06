@@ -19,7 +19,8 @@ export const useBoardStore = defineStore('board', {
   }),
   actions: {
     addSquare(square: Square) {
-      this.path.push(square)
+      square.click();
+      this.path.push(square);
     }
   }
 })

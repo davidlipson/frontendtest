@@ -1,8 +1,9 @@
 <template>
   <div class="panel">
-  <div class="path-element" v-for="square in path" :key="square.index">
-    <p> {{ square.squareName() }}</p>
-  </div>
+    <div class="path-element" v-for="(square, index) in path" :key="square.index">
+      <p class="path-element-id">{{ index + 1 }}.</p>
+      <p class="path-element-value">{{ square.squareName() }}</p>
+    </div>
   </div>
 </template>
 
@@ -21,26 +22,55 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .path-element {
-  font-size: 20px;
+  font-size: 16px;
+  border-radius: 5px;
   color: black;
-  background-color: beige;
-  height: 50px;
-  width: 50px;
-  margin: 0px 5px;
-  border-radius: 10px;
+  background-color: rgb(255, 250, 240);
+  height: 40px;
+  font-weight: bold;
   padding: 10px;
-  flex: 0 0 10%;
+  display: flex;
+  margin: 5px 0px;
 }
+
+.path-element:first-of-type {
+  margin-top: 0px;
+}
+
+.path-element p {
+  margin-top: -3px;
+}
+
+.path-element-id {
+  width: 50%;
+}
+
+.path-element-value {
+  width: 50%;
+}
+
 .panel {
-  display: flex; 
-  flex-wrap: wrap;
-  padding: 10px 5px;
   flex-direction: row;
-  background-color: rgb(194, 222, 246);
-  width: 400px;
-  border-radius: 10px;
-  margin-left: 10px;
+  width: 90vmin;
+  overflow: scroll;
+  scroll-behavior: calc(100% - 20px);
+}
+
+@media (max-width: 1024px) {
+  .panel {
+    /*max-height: calc(100vh - 90vmin - 10vmin - 10px);*/
+    max-height: 30vmin;
+    margin-top: 10px;
+    margin-bottom: 5vmin;
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel {
+    width: 200px;
+    height: 90vmin;
+    margin-left: 10px;
+  }
 }
 </style>

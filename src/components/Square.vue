@@ -1,5 +1,5 @@
 <template>
-  <div @click="addToPath()" :style="{ backgroundColor: square.colour }" class="square"></div>
+  <div @click="addToPath()" class="square"></div>
 </template>
 
 <script lang="ts">
@@ -17,24 +17,14 @@ export default defineComponent({
   methods: {
     addToPath() {
       this.$emit('addToPath', this.square)
-    },
+    }
   }
 })
 </script>
 
 <style scoped>
 .square {
-  width: 75px;
-  height: 75px;
-  padding: 0px;
-  border-radius: 10px;
-}
-
-.square:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-@media (min-width: 1024px) {
+  width: 100%;
+  height: 100%;
 }
 </style>
