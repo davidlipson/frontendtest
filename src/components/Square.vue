@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { Square } from '@/square'
+import { Square } from '@/types/square.js'
 import { defineComponent } from 'vue'
 
 export default defineComponent({

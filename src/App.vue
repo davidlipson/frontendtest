@@ -1,7 +1,12 @@
 <template>
   <div class="main">
-    <Board :board="board" @add-to-path="addToPath" />
-    <Panel @scroll-up="scrollUp" @scroll-down="scrollDown" :path="viewablePath" :offset="offset" />
+    <Board :board="game.board" @add-to-path="addToPath" />
+    <Panel
+      @scroll-up="scrollUp"
+      @scroll-down="scrollDown"
+      :path="viewablePath"
+      :offset="offset"
+    />
   </div>
 </template>
 
@@ -9,16 +14,15 @@
 import { defineComponent } from 'vue'
 import Board from './components/Board.vue'
 import Panel from './components/Panel.vue'
-import { Square, initializeBoard } from './square'
+import { Square, Board as Game } from './types'
 
 export default defineComponent({
   name: 'App',
   data() {
     return {
-      path: [] as Square[],
-      board: initializeBoard(),
+      game: new Game(),
       offset: 0,
-      viewable: 20
+      totalViewable: window.innerWidth < 1025 ? 3 : 20,
     }
   },
   components: {
@@ -26,19 +30,23 @@ export default defineComponent({
     Panel
   },
   emits: ['addToPath', 'scrollUp', 'scrollDown'],
+  mounted() {
+    window.addEventListener('resize', this.resizePanel)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.resizePanel)
+  },
   computed: {
-    viewablePath() {
-      console.log(this.offset, this.viewable, this.path.slice(this.offset, this.offset + this.viewable))
-      return this.path.slice(this.offset, this.offset + this.viewable)
+    viewablePath(): Square[] {
+      return this.game.viewablePath(this.offset, this.totalViewable);
     }
   },
   methods: {
     addToPath(square: Square) {
-      square.click()
-      this.path.push(square)
+      this.game.addToPath(square)
     },
     scrollDown() {
-      if (this.offset < this.path.length - this.viewable) {
+      if (this.offset < this.game.path.length - this.totalViewable) {
         this.offset++
       }
     },
@@ -46,6 +54,10 @@ export default defineComponent({
       if (this.offset > 0) {
         this.offset--
       }
+    },
+    resizePanel() {
+      this.offset = 0 // can fix this to  be better
+      this.totalViewable = window.innerWidth < 1025 ? 3 : 20
     }
   }
 })
@@ -59,7 +71,7 @@ export default defineComponent({
   align-items: center;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .main {
     flex-direction: row;
     height: 100vh;

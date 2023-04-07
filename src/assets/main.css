@@ -1,6 +1,6 @@
 @import './base.css';
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   #app {
     display: flex;
     flex-direction: row;

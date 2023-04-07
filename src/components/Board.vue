@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Square from './Square.vue'
-import type { Square as Piece } from '@/square'
+import type { Square as Piece } from '@/types/square'
 
 export default defineComponent({
   name: 'Board',
@@ -46,7 +46,7 @@ td:hover {
   opacity: 0.8;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   table {
     margin-top: 5vmin;
   }
