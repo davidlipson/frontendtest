@@ -40,6 +40,11 @@ export default defineComponent({
   methods: {
     addToPath(square: Square) {
       this.game.addToPath(square)
+      // on add, show the longest, most recent path for the viewport
+      this.offset =
+        this.game.path.length - this.totalViewable > 0
+          ? this.game.path.length - this.totalViewable
+          : this.offset
     },
     scrollDown() {
       if (this.offset < this.game.path.length - this.totalViewable) {
@@ -52,8 +57,9 @@ export default defineComponent({
       }
     },
     resizePanel() {
-      this.offset = 0
       this.totalViewable = window.innerWidth < 1025 ? 3 : 20
+      // on resize, show the longest, most recent path for the new viewport
+      this.offset = Math.max(this.game.path.length - this.totalViewable, 0)
     }
   }
 })
