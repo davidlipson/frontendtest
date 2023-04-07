@@ -31,44 +31,41 @@ export default defineComponent({
   text-align: center;
   background-color: rgb(255, 250, 240, 0.5);
   height: 50px;
-  padding-top: 7px !important;
-  padding: 3px;
-}
-
-.arrow:hover {
-  cursor: pointer;
-  color: black;
+  display: flex;
+  align-items: center;
 }
 
 .arrow-divider {
   height: calc(90vmin - 100px);
-  background-color: rgb(255, 250, 240, 0);
+  background-color: rgb(255, 250, 240, 0.5);
+  border-top: 1px solid #f2e9e9;
+  border-bottom: 1px solid #f2e9e9;
 }
 
 .arrow:hover {
+  cursor: pointer;
   background-color: rgb(255, 250, 240) !important;
 }
 
 .bi {
   width: 100%;
   font-size: 20px !important;
+  color: #f2e9e9;
 }
 
 .navigation {
   width: 30px;
-
 }
 
 @media (max-width: 1025px) {
   .arrow-divider {
     display: none;
   }
-  .navigation{
-    height: calc(15vmin);
-  }
   .arrow {
     height: 50%;
-    padding: none !important;
+  }
+  .navigation {
+    height: 120px;
   }
 }
 </style>

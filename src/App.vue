@@ -1,12 +1,7 @@
 <template>
   <div class="main">
     <Board :board="game.board" @add-to-path="addToPath" />
-    <Panel
-      @scroll-up="scrollUp"
-      @scroll-down="scrollDown"
-      :path="viewablePath"
-      :offset="offset"
-    />
+    <Panel @scroll-up="scrollUp" @scroll-down="scrollDown" :path="viewablePath" :offset="offset" />
   </div>
 </template>
 
@@ -14,7 +9,7 @@
 import { defineComponent } from 'vue'
 import Board from './components/Board.vue'
 import Panel from './components/Panel.vue'
-import { Square, Board as Game } from './types'
+import { Square, Game } from './types'
 
 export default defineComponent({
   name: 'App',
@@ -22,7 +17,7 @@ export default defineComponent({
     return {
       game: new Game(),
       offset: 0,
-      totalViewable: window.innerWidth < 1025 ? 3 : 20,
+      totalViewable: window.innerWidth < 1025 ? 3 : 20
     }
   },
   components: {
@@ -31,14 +26,15 @@ export default defineComponent({
   },
   emits: ['addToPath', 'scrollUp', 'scrollDown'],
   mounted() {
+    // update the viewable path when the window is resized
     window.addEventListener('resize', this.resizePanel)
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('resize', this.resizePanel)
   },
   computed: {
     viewablePath(): Square[] {
-      return this.game.viewablePath(this.offset, this.totalViewable);
+      return this.game.viewablePath(this.offset, this.totalViewable)
     }
   },
   methods: {
@@ -56,7 +52,7 @@ export default defineComponent({
       }
     },
     resizePanel() {
-      this.offset = 0 // can fix this to  be better
+      this.offset = 0
       this.totalViewable = window.innerWidth < 1025 ? 3 : 20
     }
   }

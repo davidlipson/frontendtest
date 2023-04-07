@@ -6,7 +6,7 @@
         <p class="path-element-value">{{ square?.squareName() }}</p>
       </div>
     </div>
-    <Navigation @scroll-down="scrollDown" @scroll-up="scrollUp"/>
+    <Navigation @scroll-down="scrollDown" @scroll-up="scrollUp" />
   </div>
 </template>
 
@@ -36,8 +36,7 @@ export default defineComponent({
     },
     scrollDown() {
       this.$emit('scrollDown')
-    },
-    
+    }
   }
 })
 </script>
@@ -73,35 +72,35 @@ export default defineComponent({
 .panel {
   display: flex;
   flex-direction: column;
-  width: 90vmin;
+  background-color: rgba(255, 255, 255, 0.233);
 }
 
 .panel-container {
   display: flex;
   flex-direction: row;
+  height: 90vmin;
 }
 
 @media (max-width: 1025px) {
   .panel-container {
     margin-top: 10px;
     margin-bottom: 5vmin;
+    height: 120px;
   }
-  .path-element{
-    height: calc(15vmin/3);
-  }
-  .panel{
+
+  .panel {
     width: calc(90vmin - 30px);
   }
 
+  .path-element {
+    height: 40px;
+  }
 }
 
 @media (max-width: 600px) {
   .path-element {
-   font-size: 12px;
-   height: 30px;
+    font-size: 13px;
   }
-
-
 }
 
 @media (min-width: 1025px) {
@@ -111,7 +110,6 @@ export default defineComponent({
 
   .panel {
     width: 200px;
-    background-color: rgba(255, 255, 255, 0.233);
   }
 }
 </style>
