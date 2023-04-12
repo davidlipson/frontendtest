@@ -85,7 +85,7 @@ export default defineComponent({
   .panel-container {
     margin-top: 10px;
     margin-bottom: 5vmin;
-    height: 120px;
+    height: 240px;
   }
 
   .panel {

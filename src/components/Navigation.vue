@@ -65,7 +65,7 @@ export default defineComponent({
     height: 50%;
   }
   .navigation {
-    height: 120px;
+    height: 240px;
   }
 }
 </style>
