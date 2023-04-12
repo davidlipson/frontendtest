@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "start": "vite",
-    "build": "run-p type-check build-only",
+    "build": "tsc && vite build",
+    "postinstall": "npm run build",
+    "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
