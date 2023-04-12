@@ -10,9 +10,7 @@ import { defineComponent } from 'vue'
 import Board from './components/Board.vue'
 import Panel from './components/Panel.vue'
 import { Square, Game } from './types'
-
-const DESKTOP_VIEWABLE = 20
-const MOBILE_VIEWABLE = 6
+import {getViewableElements} from './helpers'
 
 export default defineComponent({
   name: 'App',
@@ -20,7 +18,7 @@ export default defineComponent({
     return {
       game: new Game(),
       offset: 0,
-      totalViewable: window.innerWidth < 1025 ? MOBILE_VIEWABLE : DESKTOP_VIEWABLE
+      totalViewable: getViewableElements(window.innerHeight, window.innerWidth)
     }
   },
   components: {
@@ -60,7 +58,7 @@ export default defineComponent({
       }
     },
     resizePanel() {
-      this.totalViewable = window.innerWidth < 1025 ? MOBILE_VIEWABLE : DESKTOP_VIEWABLE
+      this.totalViewable = getViewableElements(window.innerHeight, window.innerWidth)
       // on resize, show the longest, most recent path for the new viewport
       this.offset = Math.max(this.game.path.length - this.totalViewable, 0)
     }

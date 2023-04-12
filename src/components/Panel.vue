@@ -79,13 +79,14 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   height: 90vmin;
+  overflow: hidden;
 }
 
 @media (max-width: 1025px) {
   .panel-container {
     margin-top: 10px;
     margin-bottom: 5vmin;
-    height: 240px;
+    height: calc(100vh - 90vmin - 5vmin - 10px - 5vmin);
   }
 
   .panel {
