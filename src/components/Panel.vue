@@ -72,7 +72,7 @@ export default defineComponent({
 .panel {
   display: flex;
   flex-direction: column;
-  background-color: rgb(214, 214, 214);
+  background-color: rgba(255, 255, 255, 0.233);
 }
 
 .panel-container {
