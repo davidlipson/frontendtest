@@ -67,8 +67,5 @@ export default defineComponent({
   .arrow:first-of-type{
     border-bottom: 1px solid #f2e9e9;
   }
-  .navigation {
-    height: calc(100vh - 90vmin - 5vmin - 10px - 5vmin);
-  }
 }
 </style>

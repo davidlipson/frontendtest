@@ -49,7 +49,7 @@ export default defineComponent({
   font-weight: bold;
   padding: 10px;
   display: flex;
-  height: calc(90vmin / 20);
+  height: var(--element-height);
   cursor: pointer;
 }
 
@@ -78,7 +78,7 @@ export default defineComponent({
 .panel-container {
   display: flex;
   flex-direction: row;
-  height: 90vmin;
+  height: var(--panel-height);
   overflow: hidden;
 }
 
@@ -86,15 +86,10 @@ export default defineComponent({
   .panel-container {
     margin-top: 10px;
     margin-bottom: 5vmin;
-    height: calc(100vh - 90vmin - 5vmin - 10px - 5vmin);
   }
 
   .panel {
     width: calc(90vmin - 30px);
-  }
-
-  .path-element {
-    height: 40px;
   }
 }
 
