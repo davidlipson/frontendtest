@@ -28,7 +28,6 @@ export class Square {
   }
 
   squareName(): string {
-    console.log(this.x, this.y)
     return String.fromCharCode(65 + this.x) + (this.BOARD_WIDTH - this.y)
   }
 }
